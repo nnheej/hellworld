@@ -54,9 +54,21 @@ class ChatWin2 extends Frame {
 		/*
 		 * (1) 알맞은 코드를 넣어 완성하시오.
 		 */
-		BufferedWriter bw = new BufferedWriter(new FileWriter(fileName));
-		bw.write(ta.getText());
-		System.out.println(tf.getText());
+		FileWriter fw = null;
+		BufferedWriter bw = null;
+		try{
+			fw = new FileWriter(fileName);
+			bw = new BufferedWriter(fw);
+			bw.write(ta.getText());
+		}catch(IOException ie){
+			ie.printStackTrace();
+		}finally{
+			try{
+				if(bw!=null)
+					bw.close();
+			}catch(IOException e){}
+		}
+		
 		
 	} // saveAs메서드의 끝
 
