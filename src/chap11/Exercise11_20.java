@@ -74,7 +74,7 @@ class Exercise11_20 {
 			}
 			String[] result = data.split(",");
 			int ban = Integer.parseInt(result[1]);
-			Student s = new Student("", 0, 0, 0, 0, 0);
+			Student3 s = new Student3("", 0, 0, 0, 0, 0);
 			s.name = result[0];
 			s.ban = Integer.parseInt(result[1]);
 			s.no = Integer.parseInt(result[2]);
@@ -89,7 +89,7 @@ class Exercise11_20 {
 			/*
 			 * (2) 아래의 로직에 맞게 코드를 작성하시오. 1. Scanner를 이용해서 화면으로 부터 데이터를
 			 * 입력받는다.(','를 구분자로) 2. 입력받은 값이 q 또는 Q이면 메서드를 종료하고, 그렇지 않으면 입력받은 값으로
-			 * Student인스턴스를 생성하고 record에 추가한다. 3. 입력받은 데이터에서 예외가 발생하면,
+			 * Student3인스턴스를 생성하고 record에 추가한다. 3. 입력받은 데이터에서 예외가 발생하면,
 			 * "입력오류입니다."를 보여주고 다시 입력받는다. 4. q 또는 Q가 입력될 때까지 2~3의 작업을 반복한다.
 			 */
 		} // end of while
@@ -108,12 +108,12 @@ class Exercise11_20 {
 			System.out
 					.println("====================================================");
 			for (int i = 0; i < length; i++) {
-				Student student = (Student) record.get(i);
-				System.out.println(student);
-				koreanTotal += student.kor;
-				mathTotal += student.math;
-				englishTotal += student.eng;
-				total += student.total;
+				Student3 Student3 = (Student3) record.get(i);
+				System.out.println(Student3);
+				koreanTotal += Student3.kor;
+				mathTotal += Student3.math;
+				englishTotal += Student3.eng;
+				total += Student3.total;
 			}
 			System.out
 					.println("====================================================");
@@ -130,7 +130,7 @@ class Exercise11_20 {
 	} // static void displayRecord() {
 }
 
-class Student implements Comparable {
+class Student3 implements Comparable {
 	String name;
 	int ban;
 	int no;
@@ -141,7 +141,7 @@ class Student implements Comparable {
 	int schoolRank;
 	int classRank; // 반등수
 
-	Student(String name, int ban, int no, int kor, int eng, int math) {
+	Student3(String name, int ban, int no, int kor, int eng, int math) {
 		this.name = name;
 		this.ban = ban;
 		this.no = no;
@@ -160,8 +160,8 @@ class Student implements Comparable {
 	}
 
 	public int compareTo(Object o) {
-		if (o instanceof Student) {
-			Student tmp = (Student) o;
+		if (o instanceof Student3) {
+			Student3 tmp = (Student3) o;
 			return tmp.total - this.total;
 		} else {
 			return -1;
@@ -173,5 +173,5 @@ class Student implements Comparable {
 				+ "," + getTotal() + "," + getAverage() + "," + schoolRank
 				+ "," + classRank;
 	}
-} // class Student
+} // class Student3
 

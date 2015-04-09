@@ -1,0 +1,4 @@
+==abc.txt start==
+sadsakdla
+daskdlaskd
+==abc.txt end==

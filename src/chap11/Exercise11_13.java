@@ -4,19 +4,19 @@ import java.util.*;
 
 class Exercise11_13 {
 	public static void main(String args[]) throws Exception {
-		SutdaDeck deck = new SutdaDeck();
+		SutdaDeck3 deck = new SutdaDeck3();
 		deck.shuffle();
-		Player[] pArr = { new Player("타짜", deck.pick(), deck.pick()),
-				new Player("고수", deck.pick(), deck.pick()),
-				new Player("물주", deck.pick(), deck.pick()),
-				new Player("중수", deck.pick(), deck.pick()),
-				new Player("하수", deck.pick(), deck.pick()) };
+		Player3[] pArr = { new Player3("타짜", deck.pick(), deck.pick()),
+				new Player3("고수", deck.pick(), deck.pick()),
+				new Player3("물주", deck.pick(), deck.pick()),
+				new Player3("중수", deck.pick(), deck.pick()),
+				new Player3("하수", deck.pick(), deck.pick()) };
 		TreeMap rank = new TreeMap(new Comparator() {
 			public int compare(Object o1, Object o2){
-				if(o1 instanceof Player && o2 instanceof Player)
+				if(o1 instanceof Player3 && o2 instanceof Player3)
 				{
-					Player p1 = (Player)o1;
-					Player p2 = (Player)o2;
+					Player3 p1 = (Player3)o1;
+					Player3 p2 = (Player3)o2;
 					
 					return p2.point - p1.point;
 				}
@@ -25,7 +25,7 @@ class Exercise11_13 {
 			}
 		});
 		for (int i = 0; i < pArr.length; i++) {
-			Player p = pArr[i];
+			Player3 p = pArr[i];
 			rank.put(p, deck.getPoint(p));
 			System.out.println(p + " " + deck.getPoint(p));
 		}
@@ -34,17 +34,17 @@ class Exercise11_13 {
 	}
 }
 
-class SutdaDeck {
+class SutdaDeck3 {
 	final int CARD_NUM = 20;
-	SutdaCard[] cards = new SutdaCard[CARD_NUM];
+	SutdaCard3[] cards = new SutdaCard3[CARD_NUM];
 	int pos = 0; // 다음에 가져올 카드의 위치
 	HashMap jokbo = new HashMap(); // 족보를 저장할 HashMap
 
-	SutdaDeck() {
+	SutdaDeck3() {
 		for (int i = 0; i < cards.length; i++) {
 			int num = i % 10 + 1;
 			boolean isKwang = i < 10 && (num == 1 || num == 3 || num == 8);
-			cards[i] = new SutdaCard(num, isKwang);
+			cards[i] = new SutdaCard3(num, isKwang);
 		}
 		registerJokbo(); // 족보를 등록한다.
 	}
@@ -75,11 +75,11 @@ class SutdaDeck {
 		jokbo.put("64", 2010);
 	}
 
-	int getPoint(Player p) {
+	int getPoint(Player3 p) {
 		if (p == null)
 			return 0;
-		SutdaCard c1 = p.c1;
-		SutdaCard c2 = p.c2;
+		SutdaCard3 c1 = p.c1;
+		SutdaCard3 c2 = p.c2;
 		Integer result = 0;
 		if (c1.isKwang && c2.isKwang) {
 			result = (Integer) jokbo.get("KK");
@@ -93,8 +93,8 @@ class SutdaDeck {
 		return result.intValue();
 	}
 
-	SutdaCard pick() throws Exception {
-		SutdaCard c = null;
+	SutdaCard3 pick() throws Exception {
+		SutdaCard3 c = null;
 		if (0 <= pos && pos < CARD_NUM) {
 			c = cards[pos];
 			cards[pos++] = null;
@@ -108,20 +108,20 @@ class SutdaDeck {
 		for (int x = 0; x < CARD_NUM * 2; x++) {
 			int i = (int) (Math.random() * CARD_NUM);
 			int j = (int) (Math.random() * CARD_NUM);
-			SutdaCard tmp = cards[i];
+			SutdaCard3 tmp = cards[i];
 			cards[i] = cards[j];
 			cards[j] = tmp;
 		}
 	}
-} // SutdaDeck
+} // SutdaDeck3
 
-class Player {
+class Player3 {
 	String name;
-	SutdaCard c1;
-	SutdaCard c2;
+	SutdaCard3 c1;
+	SutdaCard3 c2;
 	int point;
 
-	Player(String name, SutdaCard c1, SutdaCard c2) {
+	Player3(String name, SutdaCard3 c1, SutdaCard3 c2) {
 		this.name = name;
 		this.c1 = c1;
 		this.c2 = c2;
@@ -130,17 +130,17 @@ class Player {
 	public String toString() {
 		return "[" + name + "]" + c1.toString() + "," + c2.toString();
 	}
-} // class Player
+} // class Player3
 
-class SutdaCard {
+class SutdaCard3 {
 	int num;
 	boolean isKwang;
 
-	SutdaCard() {
+	SutdaCard3() {
 		this(1, true);
 	}
 
-	SutdaCard(int num, boolean isKwang) {
+	SutdaCard3(int num, boolean isKwang) {
 		this.num = num;
 		this.isKwang = isKwang;
 	}
