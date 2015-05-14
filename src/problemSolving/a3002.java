@@ -1,13 +1,16 @@
 package problemSolving;
 
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Scanner;
 
 public class a3002 {
-	public static void main(String args[]){
+	public static void void main(String args[]){
 		Scanner in = new Scanner(System.in);
 		
 		LinkedList<Integer> listN = new LinkedList<Integer>();
+		LinkedList<Integer> listM = new LinkedList<Integer>();
 		
 		int n = in.nextInt(); // n 입력받기
 		in.nextLine();
@@ -21,10 +24,18 @@ public class a3002 {
 		in.nextLine();
 		String input2 = in.nextLine();
 		String inputNums2[] = input2.split(" ");
-		for(int j=0; j<m; j++){
+		HashMap<Integer,Integer> hMap = new HashMap<Integer, Integer>();
+
+		for(int i=0 ; i<m; i++){
+			Integer num = Integer.parseInt(inputNums[i]); 
+			listM.offer(num); //n만큼의 수 입력받아 listN에 저장
+			hMap.put(num, BinarySearch(listN,0,listN.size()-1,num));
+		}
+		
+		/*for(int j=0; j<m; j++){
 			int result = BinarySearch(listN,0,listN.size()-1,Integer.parseInt(inputNums2[j]));
 			System.out.print((result==-1?result:result+1) +" ");
-		}
+		}*/
 	}
 	public static int BinarySearch(LinkedList<Integer> list,int first,int last,int target){
 		int mid;
