@@ -26,7 +26,26 @@ public class a3002 {
 			System.out.print((result==-1?result:result+1) +" ");
 		}
 	}
-	public static int BinarySearch(LinkedList<Integer> list,int first, int last, int target){
+	public static int BinarySearch(LinkedList<Integer> list,int first,int last,int target){
+		int mid;
+		
+		while(first<=last){
+			mid = (first+last)/2;
+			if(target==list.get(mid)){
+				return mid;
+			}
+			else{
+				if(target <list.get(mid)){
+					last = mid-1;
+				}
+				else{
+					first = mid+1;
+				}
+			}
+		}
+		return -1;
+	}
+	/*public static int BinarySearch(LinkedList<Integer> list,int first, int last, int target){
 		if(first>last)
 			return -1;
 		int mid = (first+last)/2;
@@ -40,5 +59,5 @@ public class a3002 {
 			return BinarySearch(list, first, mid-1, target);
 		}
 		
-	}
+	}*/
 }
